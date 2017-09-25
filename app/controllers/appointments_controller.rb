@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
  		############################
  		respond_to do |format|
 	      if @appointment.update(permit_appointment)
-	        format.html { redirect_to @appointment, notice: 'User info was successfully updated.' }
+	        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
 	        format.json { render :show, status: :ok, location: @appointment }
 	      else
 	        format.html { render :edit }
