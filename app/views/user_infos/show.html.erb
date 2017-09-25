@@ -1,30 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user_info.name %>
-</p>
+<table>
+  <tbody>
+  <tr>
+    <td><strong>Name:</strong></td>
+    <td><%= @user_info.name %></td>
+  </tr>
+
+  <tr>
+    <td><strong>About:</strong> </td>
+    <td><%= @user_info.about %></td>
+  </tr>
+  <tr>
+    <td><strong>Age:</strong></td>
+    <td><%= @user_info.age %></td>
+  </tr>
+  <tr>
+    <td><strong>School:</strong></td>
+    <td><%= @user_info.school %></td>
+  </tr>
+  <tr>
+    <td><strong>Ratings:</strong></td>
+    <td><%= @user_info.ratings %></td>
+  </tr>
 
 
-<p>
-  <strong>About:</strong>
-  <%= @user_info.about %>
-</p>
+  </tbody>
 
-<p>
-  <strong>Age:</strong>
-  <%= @user_info.age %>
-</p>
-
-<p>
-  <strong>School:</strong>
-  <%= @user_info.school %>
-</p>
-
-<p>
-  <strong>Ratings:</strong>
-  <%= @user_info.ratings %>
-</p>
-
+</table>
 <%= link_to 'Edit', edit_user_info_path(@user_info) %> |
 <%= link_to 'Back', user_infos_path %>
