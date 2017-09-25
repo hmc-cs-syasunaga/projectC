@@ -32,10 +32,23 @@
 	                        <%= link_to "My Business", "/my_business" %>
 	                    </li>
 
-	                    <%- if current_user %>
+	                    <%- if current_user  %>
 	                    	<li>
 	                    		<%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %>
 	                    	</li>
+
+	                    	
+	                    		<%- if info_exist %>
+	                    			<li>
+	                    				<%= link_to "User Information", user_info_path(current_user.id) %>
+	                    			</li>
+	                    			
+	                    		<% else %>
+	                    			<li>
+	                    				<%= link_to "Create User Information", new_user_info_path(current_user.id) %>
+	                    			</li>
+	                    		<% end %>
+	                    	
 	                    <% else %>
 		                    <li>
 		                   		<%= link_to "Login", new_user_session_path %>
