@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	root 'businesses#index'
 	resources :businesses
 	resources :comments
-	resources :appointments
+	resources :my_appointments
 
 	get '/my_business', to: 'businesses#my_business'
 	get '/my_appointments', to: 'appointments#my_appointments'

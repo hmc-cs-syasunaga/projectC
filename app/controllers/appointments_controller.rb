@@ -29,9 +29,6 @@ class AppointmentsController < ApplicationController
  	end
 
  	def update
- 		############################
- 		#### I have to fix this ####
- 		############################
  		respond_to do |format|
 	      if @appointment.update(permit_appointment)
 	        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
@@ -50,7 +47,9 @@ class AppointmentsController < ApplicationController
 		end
 
 	  	def permit_appointment
-	  		params.require(:appointment).permit(:start_time, :end_time, :business_id, :user_id,
-	  										:date, :approved)
+	  		params.require(:appointment).permit(:start_time, :end_time,
+	  										:date, :approved, :user_id,
+	  										:busines_id)
+
 	  	end
 end
