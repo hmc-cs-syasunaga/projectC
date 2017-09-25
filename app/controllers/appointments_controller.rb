@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-	before_action :set_appointment, only:[:edit, :show, :update]
+	# before_action :set_appointment, only:[:edit, :show]
 
 	def new
 		@appointment = Appointment.new
@@ -50,7 +50,7 @@ class AppointmentsController < ApplicationController
 		end
 
 	  	def permit_appointment
-	  		params.require(:appointment).permit(:start_time, :end_time,
+	  		params.require(:appointment).permit(:start_time, :end_time, :business_id, :user_id,
 	  										:date, :approved)
 	  	end
 end
