@@ -1,6 +1,7 @@
 class UserInfosController < ApplicationController
   before_action :set_user_info, only: [:show, :edit, :update, :destroy]
 
+  
   # GET /user_infos
   # GET /user_infos.json
   def index
@@ -14,8 +15,7 @@ class UserInfosController < ApplicationController
 
   # GET /user_infos/new
   def new
-      # I want to delete this part later
-      format.html {redirect_to @user_info, notice: 'You already have an information'}
+    @user_info = UserInfo.new
   end
 
   # GET /user_infos/1/edit
@@ -26,6 +26,7 @@ class UserInfosController < ApplicationController
   # POST /user_infos.json
   def create
     @user_info = UserInfo.new(user_info_params)
+    @user_info.user_id = current_user.id
 
     respond_to do |format|
       if @user_info.save
@@ -73,4 +74,6 @@ class UserInfosController < ApplicationController
     def user_info_params
       params.require(:user_info).permit(:name, :about, :age, :school)
     end
+
+
 end

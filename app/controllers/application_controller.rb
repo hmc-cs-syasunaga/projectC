@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :info_exist
 
   def info_exist
-      return User_infos.exists?(user_id: current_user.id)
+      return UserInfo.exists?(user_id: current_user.id)
   end
 end
