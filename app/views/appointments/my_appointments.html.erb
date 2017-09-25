@@ -9,13 +9,20 @@
 		<th>Business</th>
 		<th>Date</th> 
 		<th>Time</th>
+        <th>Status</th>
 	</tr>
 
 <% Appointment.find_by_sql(["SELECT * FROM appointments WHERE user_id=?", current_user.id]).each do |a| %>
   	<tr>
-    	<td><%= a.busines_id %></td>
+    	<td><%= Business.find_by(id: a.busines_id).name %></td>
     	<td><%= a.date %></td> 
     	<td><%= a.start_time %></td>
+        <%- if a.approved %>
+            <td> Approved</td>
+        <% else %>
+            <td> Not yet approved </td>
+        <% end %>
+
   	</tr>
 <% end %>
 
