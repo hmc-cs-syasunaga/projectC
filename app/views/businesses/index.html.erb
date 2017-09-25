@@ -1,0 +1,9 @@
+<% @businesses.each do |x| %>
+	<div class="white">
+	<%= image_tag x.image.url(:medium) %>
+	<br>
+	<%= x.name %>
+	<br>
+	<%= link_to "More Details", business_path(x) %> 
+	</div>
+<% end %>
