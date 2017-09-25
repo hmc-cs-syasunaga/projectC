@@ -1,4 +1,4 @@
-<%= image_tag(@business.image.url(:thumb)) %>
+<%= image_tag(@business.image.url(:medium)) %>
 <br> 	
 <%= @business.name %>
 
@@ -9,4 +9,36 @@
 <br>
 <br>
 
-<%= current_user.id %>
+<%= form_for Appointment.new, html: { multipart: true } do |f| %>
+	<%= f.label "Select a time!" %>
+	<%= f.time_select :start_time %>
+	<br>
+	<%= f.label :date %>
+	<%= f.date_select :date %>
+	<br>
+	<%= f.label :busines_id %>
+	<%= f.hidden_field :busines_id, :value => @business.id %>
+	<%= f.label :user_id %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<br>
+	<%= f.submit %>
+<% end %>
+
+<%= form_for Comment.new, html: { multipart: true } do |f| %>
+	<%= f.label "Leave a comment!" %>
+	<%= f.text_area :content %>
+	<br>
+	<%= f.label :user_id %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<br>
+	<%= f.label :business_id %>
+	<%= f.hidden_field :business_id, :value => @business.id %>
+	<br>
+	<%= f.submit %>
+<% end %>
+
+<% Comment.find_by_sql(["SELECT * FROM comments WHERE business_id=?", @business.id]).each do |x| %>
+	<div class="white">
+	<%= x.content %>
+	</div>
+<% end %>

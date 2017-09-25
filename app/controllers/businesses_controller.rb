@@ -10,6 +10,12 @@ class BusinessesController < ApplicationController
 
 	def show
 	  	@business = Business.find(params[:id])
+	  	@comments = Comment.all
+	end
+
+	def my_business
+		@businesses = Business.find_by_sql(
+			["SELECT * FROM businesses WHERE user_id=?", current_user.id])
 	end
 
 	def create
@@ -21,6 +27,10 @@ class BusinessesController < ApplicationController
 			flash[:error] = @business.errors.full_messages
   			redirect_to new_business_path
   		end
+ 	end
+
+ 	def find_comments_by_business
+ 		@comments = Comment.find(params[:business_id])
  	end
 
  	private
