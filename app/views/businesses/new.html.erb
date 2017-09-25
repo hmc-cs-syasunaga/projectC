@@ -1,28 +1,33 @@
 <%- if current_user %>
-	<h2> Welcome user number : <%= current_user.id %> </h2>
+	<h2> Welcome <%= UserInfo.find_by(user_id: current_user.id).name %> </h2>
 	<h1>Register your on-campus business here!</h1>
-	<br>
-	<%= form_for @business, html: { multipart: true } do |f| %>
-		<%= f.label :image %>
-		<%= f.file_field :image %>
-		<br>
-		<%= f.label :name %>
-		<%= f.text_area :name %>
-		<br>
-		<%= f.label "Tell your customers what you do!" %>
-		<%= f.text_area :category %>
-		<br>
-		<%= f.label :location %>
-		<%= f.text_area :location %>
-		<br>
-		<%= f.label :price %>
-		<%= f.text_area :price %>
-		<br>
-		<%= f.label :price %>
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<br>
-		<%= f.submit %>
-	<% end %>
+	<div class="new_business_form_holder">
+		<%= form_for @business, html: { multipart: true } do |f| %>
+
+			<br>
+			<%= f.label "Name of your business" %>
+			<br>
+			<%= f.text_area :name %>
+			<br>
+			<%= f.label "Tell your customers what you do!" %>
+			<br>
+			<%= f.text_area :category %>
+			<br>
+			<%= f.label "Where are you located?" %>
+			<br>
+			<%= f.text_area :location %>
+			<br>
+			<%= f.label "How much do you charge?" %>
+			<br>
+			<%= f.text_area :price %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<br>
+			<%= f.label "Please add an image for you business profile!" %>
+			<%= f.file_field :image %>
+			<br> 	
+			<%= f.submit %>
+		<% end %>
+	</div>
 <% else %>
 	<h2> 
 		Looks like you aren't signed in! You need to 

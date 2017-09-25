@@ -24,31 +24,34 @@
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav">
-	                    <li>
-	                        <%= link_to "New Business", new_business_path %>
-	                    </li>
-
-	                    <li>
-	                        <%= link_to "My Business", "/my_business" %>
-	                    </li>
 
 	                    <%- if current_user  %>
+
+                    		<%- if info_exist %>
+			                    <li>
+			                        <%= link_to "New Business", new_business_path %>
+			                    </li>
+
+			                    <li>
+			                        <%= link_to "My Businesses", "/my_business" %>
+			                    </li>
+			                    <li>
+			                        <%= link_to "My Appointments", "/my_appointments" %>
+			                    </li>
+                    			<li>
+                    				<%= link_to "User Information", user_info_path(current_user.id) %>
+                    			</li>
+                    		<% else %>
+                    			<li>
+                    				<%= link_to "Create User Information", new_user_info_path(current_user.id) %>
+                    			</li>
+                    		<% end %>
+	                    	
+
 	                    	<li>
 	                    		<%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %>
 	                    	</li>
 
-	                    	
-	                    		<%- if info_exist %>
-	                    			<li>
-	                    				<%= link_to "User Information", user_info_path(current_user.id) %>
-	                    			</li>
-	                    			
-	                    		<% else %>
-	                    			<li>
-	                    				<%= link_to "Create User Information", new_user_info_path(current_user.id) %>
-	                    			</li>
-	                    		<% end %>
-	                    	
 	                    <% else %>
 		                    <li>
 		                   		<%= link_to "Login", new_user_session_path %>
@@ -65,6 +68,18 @@
 	        <!-- /.container -->
 	    </nav>
 
+	    <div style="height: 80px">
+	    </div>
+
+	    <div style="margin: auto; width: 70%;">
+	    <%- if current_user %>
+	    <%- if !info_exist %>
+	    	<h2> Now please tell us about yourself!
+			<%= link_to "Create user information", new_user_info_path(current_user.id) %>
+		 	before proceeding! </h2>
+	 	<% end %>	
+	 	<% end %>	 	
+	 	</div>
 	    <!-- Page Content -->
 	    <div class="container">
 

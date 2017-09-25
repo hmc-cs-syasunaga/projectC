@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	resources :appointments
 
 	get '/my_business', to: 'businesses#my_business'
+	get '/my_appointments', to: 'appointments#my_appointments'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

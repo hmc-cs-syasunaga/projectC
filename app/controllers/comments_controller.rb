@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 	def create
 		@comment = Comment.new(permit_comment)
 		if @comment.save
-			flash[:success] = "Success!"
+			flash[:success] = "Success! Your comment has been added!"
 			redirect_to business_path(@comment.business_id)
 		else
 			flash[:error] = @comment.errors.full_messages

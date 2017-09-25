@@ -1,44 +1,62 @@
-<%= image_tag(@business.image.url(:medium)) %>
-<br> 	
-<%= @business.name %>
-
-<%= @business.user_id %>
-
-<%= @business.location %>
-
-<br>
-<br>
-
-<%= form_for Appointment.new, html: { multipart: true } do |f| %>
-	<%= f.label "Select a time!" %>
-	<%= f.time_select :start_time %>
-	<br>
-	<%= f.label :date %>
-	<%= f.date_select :date %>
-	<br>
-	<%= f.label :busines_id %>
-	<%= f.hidden_field :busines_id, :value => @business.id %>
-	<%= f.label :user_id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<br>
-	<%= f.submit %>
-<% end %>
-
-<%= form_for Comment.new, html: { multipart: true } do |f| %>
-	<%= f.label "Leave a comment!" %>
-	<%= f.text_area :content %>
-	<br>
-	<%= f.label :user_id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<br>
-	<%= f.label :business_id %>
-	<%= f.hidden_field :business_id, :value => @business.id %>
-	<br>
-	<%= f.submit %>
-<% end %>
-
-<% Comment.find_by_sql(["SELECT * FROM comments WHERE business_id=?", @business.id]).each do |x| %>
-	<div class="white">
-	<%= x.content %>
+<div class="business_master">
+	<h1> <%= @business.name %> </h1>
+	<%= image_tag(@business.image.url(:medium), :class => "business_image_large")%>
+	<div class="business_info">	
+		<p> Located in: <%= @business.location %> </p>
+		<p> Price: <%= @business.price %> </p>
+		<p> Description: <%= @business.category %> </p>
 	</div>
+
+	<br>
+	<br>
+</div>
+
+
+<%- if current_user  %>
+
+<div class="appointment_form_holder">
+
+	<p> Make an appointment with <%= @business.name %>! </p>
+
+	<%= form_for Appointment.new, html: { multipart: true} do |f| %>
+		<%= f.label "Select a time!" %>
+		<%= f.time_select :start_time %>
+		<br>
+		<%= f.date_select :date %>
+		<br>
+		<%= f.hidden_field :busines_id, :value => @business.id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.submit %>
+	<% end %>
+</div>
+
+<div class="comment_maker">
+	<%= form_for Comment.new, html: { multipart: true } do |f| %>
+		<p> Leave a comment!</p>
+		<%= f.text_area :content %>
+		<%= f.hidden_field :business_id, :value => @business.id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<br>
+		<%= f.submit %>
+	<% end %>
+</div>
+
+<% else  %>
+	
+	<h2>Oops! Looks like you aren't signed in. 
+		<%= link_to "Sign in", new_user_session_path %> 
+		to make appointments and write comments. If you don't have an
+		account 
+		<%= link_to "register", new_user_registration_path %>
+		here! </h2>
+
 <% end %>
+
+<div class= "comments_holder">
+	<h3> Comments for <%= @business.name %> </h3>
+	<% Comment.find_by_sql(["SELECT * FROM comments WHERE business_id=?", @business.id]).each do |x| %>
+		<div class="comment">
+			<p> <%= UserInfo.find_by(user_id: x.user_id).name %>: <%= x.content %> </p>
+		</div>
+<% end %>
+</div>

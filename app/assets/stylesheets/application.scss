@@ -15,3 +15,13 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar.navbar-inverse.navbar-fixed-top{
+	background-color: #008050;
+	height: 100px;
+	display: flex;
+    align-items: center;	
+    a{
+    	color: white;
+    }
+}

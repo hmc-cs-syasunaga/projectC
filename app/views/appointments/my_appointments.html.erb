@@ -1,0 +1,22 @@
+<h2> Hello <%= UserInfo.find_by(user_id: current_user.id).name %>! You can find all your appointments on this page! To make appointments, browse through businesses and click "More Details". </h2>
+
+
+<h3> Please see if your appointment was approved below. And do not show up to appointments that have not been approved by the business owner!</h3>
+
+
+<table style="width:50%; margin-top: 100px">
+	<tr>
+		<th>Business</th>
+		<th>Date</th> 
+		<th>Time</th>
+	</tr>
+
+<% Appointment.find_by_sql(["SELECT * FROM appointments WHERE user_id=?", current_user.id]).each do |a| %>
+  	<tr>
+    	<td><%= a.busines_id %></td>
+    	<td><%= a.date %></td> 
+    	<td><%= a.start_time %></td>
+  	</tr>
+<% end %>
+
+</table>

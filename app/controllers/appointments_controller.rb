@@ -14,11 +14,11 @@ class AppointmentsController < ApplicationController
 	def create
 		@appointment = Appointment.new(permit_appointment)
 		if @appointment.save
-			flash[:success] = "Success!"
-			redirect_to appointments_path
+			flash[:success] = "Success! Check the 'My Appointments' tab 
+			above to keep track of your appointments!"
+			redirect_to business_path(@appointment.busines_id)
 		else
 			flash[:error] = @appointment.errors.full_messages
-  			redirect_to comment_index_path
   		end
  	end
 
