@@ -1,0 +1,11 @@
+<% @appointments.each do |x| %>
+	<div class="white">
+	business id <%= x.busines_id %>
+	<br>
+	user id <%= x.user_id %>
+	<br>
+	<%= x.start_time %>
+	<br>
+	<%= x.end_time %>
+	</div>
+<% end %>

@@ -5,6 +5,7 @@
 	width: 70%;
 	height: 160px;
 	margin: auto;
+	margin-bottom: 20px;
 	
 	border: solid 5px #9dc4a2;
 	border-radius: 10px;
@@ -31,14 +32,17 @@
 	margin-top: 50px;
 	height: 100px;
 	width: 200px;
-}
 
-.business_name{
-	float: left;
-}
 
-.business_description{
+	.business_name{
+		
+		float: left;
+		width: 100%;
+	}
 
+	.business_description{
+	  bottom: 0;
+	}
 }
 
 .details_div{

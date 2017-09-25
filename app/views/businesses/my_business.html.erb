@@ -1,0 +1,13 @@
+<% @businesses.each do |x| %>
+	<div class="businesses">
+	<%= image_tag(x.image.url(:medium)) %>
+	<br>
+	Appointments
+	<br>
+	<% Appointment.find_by_sql(["SELECT * FROM appointments WHERE busines_id=?", x.id]).each do |a| %>
+		<div class="appointment">
+		<%= a.date %>
+		</div>
+	<% end %>
+	</div>
+<% end %>
