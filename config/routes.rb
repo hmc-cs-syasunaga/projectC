@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
     
 	root 'businesses#index'
-	resources :posts
 	resources :businesses
 	resources :comments
 	resources :appointments
