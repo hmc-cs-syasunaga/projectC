@@ -1,0 +1,33 @@
+// Place all the styles related to the Business controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.business{
+	width: 70%;
+	height: 160px;
+	margin: auto;
+	
+	border: solid 5px #9dc4a2;
+	border-radius: 10px;
+	
+	font-family: sans-serif;
+	font-size: 20px;
+
+	display: inline-block
+}
+
+.business_pic_holder{
+	float: left;
+	margin-top: 40px;
+	margin-left: 40px;
+}
+
+.business_image{
+	border-radius: 50%;
+	border: solid 3px orange;
+}
+
+.business_name{
+	margin : auto;
+	width: 40%;
+	height: 50px;
+}

@@ -1,0 +1,13 @@
+<% @businesses.each do |x| %>
+	<div class="business">
+		<div class="business_pic_holder">
+			<%= image_tag x.image.url(:thumb), :class => "business_image" %>
+		</div>
+		<div class="business_name">
+			<%= x.name %>
+		</div>
+		<div class="details_div">
+		<%= link_to "More Details", business_path(x) %> 
+		</div>
+	</div>
+<% end %>
