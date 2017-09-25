@@ -7,6 +7,21 @@
 	<% Appointment.find_by_sql(["SELECT * FROM appointments WHERE busines_id=?", x.id]).each do |a| %>
 		<div class="appointment">
 		<%= a.date %>
+		<%= a.start_time %>
+		<%= a.start_time %>
+		<%- if a.approved %>
+			<p> You approved this appointment </p>
+
+		<% else %>
+			<p> You have not approved this appointment </p>
+			<p> To approve it, check the box and click update </p>
+			<%= form_for (a) do |f| %>
+				<%= f.check_box :approved, {class: 'chk'}, checked_value = true, unchecked_value = false %> 
+				<%= f.submit "Update" %>
+			<% end %>
+		<% end %>
+
+		
 		</div>
 	<% end %>
 	</div>

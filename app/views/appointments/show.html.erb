@@ -1,0 +1,9 @@
+<head> Your appointment <head>
+        <%= @appointment.date %>
+        <%= @appointment.start_time %>
+        <%= @appointment.start_time %>
+        <%- if @appointment.approved %>
+            <p> You approved this appointment </p>
+        <% else %>
+            <p> You have not approved this appointment </p>
+        <% end %>

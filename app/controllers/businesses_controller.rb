@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-
+	
 	def new
 		@business = Business.new
 	end
@@ -16,6 +16,7 @@ class BusinessesController < ApplicationController
 	def my_business
 		@businesses = Business.find_by_sql(
 			["SELECT * FROM businesses WHERE user_id=?", current_user.id])
+
 	end
 
 	def create

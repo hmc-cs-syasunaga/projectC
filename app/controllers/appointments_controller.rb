@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+	before_action :set_appointment, only:[:edit, :show, :update]
+
 	def new
 		@appointment = Appointment.new
 	end
@@ -8,7 +10,7 @@ class AppointmentsController < ApplicationController
 	end
 
 	def show
-	  	@appointment = Appointment.find(params[:id])
+		@appointment = Appointment.find(params[:id])
 	end
 
 	def create
@@ -22,10 +24,33 @@ class AppointmentsController < ApplicationController
   		end
  	end
 
+ 	def edit
+ 		
+ 	end
+
+ 	def update
+ 		############################
+ 		#### I have to fix this ####
+ 		############################
+ 		respond_to do |format|
+	      if @appointment.update(permit_appointment)
+	        format.html { redirect_to @appointment, notice: 'User info was successfully updated.' }
+	        format.json { render :show, status: :ok, location: @appointment }
+	      else
+	        format.html { render :edit }
+	        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+	       end
+	    end
+ 	end
+
 	private
+		def set_appointment
+			@appointment = Appointment.find(params[:id])
+			
+		end
+
 	  	def permit_appointment
-	  		params.require(:appointment).permit(:busines_id, :user_id,
-	  										:start_time, :end_time,
-	  										:date)
+	  		params.require(:appointment).permit(:start_time, :end_time,
+	  										:date, :approved)
 	  	end
 end
