@@ -3,8 +3,13 @@
 		<div class="business_pic_holder">
 			<%= image_tag x.image.url(:thumb), :class => "business_image" %>
 		</div>
-		<div class="business_name">
-			<%= x.name %>
+		<div class="business_name_description_holder">
+			<div class="business_name">
+				<%= x.name %>
+			</div>
+			<div class="business_description">
+				<%= x.category %>
+			</div>
 		</div>
 		<div class="details_div">
 		<%= link_to "More Details", business_path(x) %> 
