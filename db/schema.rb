@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910073010) do
+ActiveRecord::Schema.define(version: 20170925004031) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "busines_id"
+    t.time "start_time"
+    t.time "end_time"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "location"
+    t.string "category"
+    t.decimal "ratings"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "business_id"
+    t.integer "user_id"
+    t.string "content"
+    t.integer "rating"
+    t.boolean "from_user_bool"
+    t.integer "appointment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.text "description"
